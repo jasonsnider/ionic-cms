@@ -1,17 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
+import { Observable } from 'rxjs';
+
 import { User } from '../../models/user/user';
 
 @Injectable()
 export class UsersProvider {
 
-  constructor(public http: HttpClient) {
-    console.log('Hello UsersProvider Provider');
-  }
+  private url:string = 'http://localhost:3000/api/users';
 
-  getUsers(): void{
-    console.log('all users');
+  constructor(public http: HttpClient) {}
+
+  getUsers(): Observable<User[]>{
+    return this.http.get<User[]>(this.url);
   }
 
   getUser(): void{
