@@ -17,9 +17,17 @@
 
 
 <ion-content padding>
+
   <ion-list *ngIf="users">
     <ion-item *ngFor="let user of users" (click)="toUser(user._id)">
       {{ user.username }}
     </ion-item>
   </ion-list>
+
+  <ion-fab right bottom>
+    <button ion-fab color="secondary" (click)="toUserCreate()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+
 </ion-content>
