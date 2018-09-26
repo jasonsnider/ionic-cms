@@ -1,37 +1,35 @@
 import { Component } from '@angular/core';
 import {
   IonicPage,
+  LoadingController,
   NavController,
-  NavParams,
-  LoadingController
+  NavParams
 } from 'ionic-angular';
 
 import { UsersProvider } from '../../providers/users/users';
 import { User } from '../../models/user/user';
 
-import { UserPage } from '../user/user';
-
 @IonicPage()
 @Component({
-  selector: 'page-users',
-  templateUrl: 'users.html',
+  selector: 'page-user',
+  templateUrl: 'user.html',
 })
-export class UsersPage {
+export class UserPage {
 
-  users: User[];
+  user: User;
 
   constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
+    private loadingCtrl: LoadingController,
     private usersProvider: UsersProvider,
-    private loadingCtrl: LoadingController
+    public navCtrl: NavController,
+    public navParams: NavParams
   ) {}
 
   ionViewDidLoad() {
-    this.getUsers();
+    this.getUser(this.navParams.data.id);
   }
 
-  private getUsers(): void{
+  private getUser(id:string): void{
 
     let loader = this.loadingCtrl.create({
       content: 'Loading...',
@@ -39,16 +37,13 @@ export class UsersPage {
 
     loader.present();
 
-    this.usersProvider.getUsers().subscribe(
+    this.usersProvider.getUser(id).subscribe(
 
       (response:any)=>{
-        this.users = response.users;
+        this.user = response.user;
         loader.dismiss();
       }
     );
   }
 
-  toUser(id:string): void{
-    this.navCtrl.push(UserPage, {id: id});
-  }
 }
