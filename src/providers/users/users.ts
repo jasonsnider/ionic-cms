@@ -28,12 +28,12 @@ export class UsersProvider {
     return this.http.post<User>(this.url, user, httpOptions);
   }
 
-  editUser(): void{
-    console.log('edit user');
+  editUser(user:User): Observable<User>{
+    return this.http.put<User>(this.url, user, httpOptions);
   }
 
-  deleteUser(): void{
-    console.log('delete');
+  deleteUser(id:string): Observable<User>{
+    return this.http.delete<User>(`${this.url}/${id}`);
   }
 
 }

@@ -9,6 +9,9 @@ import {
 import { UsersProvider } from '../../providers/users/users';
 import { User } from '../../models/user/user';
 
+import { UserEditPage } from '../user-edit/user-edit';
+import { UserDeletePage } from '../user-delete/user-delete';
+
 @IonicPage()
 @Component({
   selector: 'page-user',
@@ -44,6 +47,14 @@ export class UserPage {
         loader.dismiss();
       }
     );
+  }
+
+  toUserEdit(id:string): void{
+    this.navCtrl.push(UserEditPage, {id: id});
+  }
+
+  toUserDelete(id:string): void{
+    this.navCtrl.push(UserDeletePage, {id: id});
   }
 
 }

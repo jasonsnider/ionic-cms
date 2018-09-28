@@ -35,11 +35,11 @@
 
     <ion-fab-list side="left">
 
-      <button ion-fab color="primary">
+      <button (click)="toUserEdit(user._id)" ion-fab color="primary">
         <ion-icon name="md-create"></ion-icon>
       </button>
 
-      <button ion-fab color="danger">
+      <button (click)="toUserDelete(user._id)" ion-fab color="danger">
         <ion-icon name="trash"></ion-icon>
       </button>
 
