@@ -13,6 +13,7 @@ const httpOptions = {
 export class UsersProvider {
 
   private url:string = 'http://localhost:3000/api/users';
+  //private url:string = 'http://10.11.6.114:3000/api/users';
 
   constructor(public http: HttpClient) {}
 
